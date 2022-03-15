@@ -2,10 +2,6 @@ library(limma)
 library(ggplot2)
 library(dplyr)
 library(edgeR)
-library(RUVSeq)
-library(RColorBrewer)
-library(rgl)
-library(EDASeq)
 
 ###Load data and metadata
 ## data is raw counts, derived from tximport, annotated using EnsDb.Hsapiens.v86
@@ -61,7 +57,7 @@ eds<-calcNormFactors(eds, method="TMM")
 
 DGEList.filtered.norm <- calcNormFactors(eds, method = "TMM")
 
-v <- voomWithQualityWeights(DGEList.filtered.norm, design=design, normalization="none", plot=TRUE)
+v <- voomWithQualityWeights(DGEList.filtered.norm, design=design, normalize.method="none", plot=TRUE)
 
 fit <- lmFit(v,design)
 efit <- eBayes(fit)
@@ -72,4 +68,3 @@ topTable
 write.csv(topTable, file=paste("All_results","filter_",FILTER,"_TMM",".csv",sep=""))
 
 summary(decideTests(efit))
-
