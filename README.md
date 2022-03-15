@@ -3,3 +3,5 @@
 Integrated transcriptomic analysis of human tuberculosis granulomas and a biomimetic model identifies therapeutic targets
 
 GSE174443
+
+GSE174566
